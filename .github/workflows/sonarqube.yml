@@ -26,3 +26,4 @@ jobs:
           projectBaseDir: .
           args: >
             -Dsonar.projectKey=Aditi-2403_T-AWS-lab
+            -Dsonar.organization=aditi-2403
