@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
+      source = "hashicorp/aws"
     }
   }
 }
@@ -14,6 +14,8 @@ resource "aws_s3_bucket" "lab_bucket" {
   bucket = "t-aws-lab-aditi-2026"
 
   tags = {
-    Name = "T-AWS-Lab-Bucket"
+    Name        = "T-AWS-Lab-Bucket"
+    Environment = "Dev"
+    Experiment  = "Terraform-IaC"
   }
 }
