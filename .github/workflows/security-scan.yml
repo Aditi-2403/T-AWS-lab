@@ -21,7 +21,7 @@ jobs:
           docker build -t t-aws-lab:latest .
 
       - name: Scan Docker image with Trivy
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.28.0
         with:
           image-ref: 't-aws-lab:latest'
           format: 'table'
