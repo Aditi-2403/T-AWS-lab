@@ -1,29 +1,29 @@
-```yaml
-name: Docker Security Scan
+name: Docker Image Security Scan
 
-'on':
+on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   security-scan:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Build Docker Image
-        run: docker build -t t-aws-lab:latest .
+      - name: Build Docker image
+        run: |
+          docker build -t t-aws-lab:latest .
 
-      - name: Trivy Vulnerability Scan
-        uses: aquasecurity/trivy-action@v0.36.0
+      - name: Scan Docker image with Trivy
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: 't-aws-lab:latest'
           format: 'table'
-          severity: 'CRITICAL,HIGH,MEDIUM,LOW'
-          ignore-unfixed: false
-          exit-code: '0'
-```
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'
